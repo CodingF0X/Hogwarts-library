@@ -1,0 +1,21 @@
+import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
+import { Email } from '../value-objects/email';
+
+export class UserAccountDomain extends AbstractEntity<UserAccountDomain> {
+  readonly userName: string;
+  readonly email: Email;
+  readonly password: string;
+
+  constructor(input: Partial<UserAccountDomain>) {
+    super(input);
+
+    if (!input.userName) throw Error('UserName is required');
+    if (!input.email) throw Error('Email is required');
+    if (!input.password) throw Error('Password is required');
+
+    this.userName = input.userName;
+    this.email =
+      input.email instanceof Email ? input.email : new Email(input.email);
+    this.password = input.password;
+  }
+}
