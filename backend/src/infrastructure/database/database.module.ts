@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, typeOrmConfig } from '../config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { SchemaBootstrapService } from './bootstrap-schema.service';
 
 @Module({
   imports: [
@@ -13,6 +12,10 @@ import { SchemaBootstrapService } from './bootstrap-schema.service';
     }),
   ],
 
-  providers: [SchemaBootstrapService],
+  providers: [],
 })
-export class DatabaseModule {}
+export class DatabaseModule {
+  static forFeature(entities: any[]) {
+    return TypeOrmModule.forFeature(entities);
+  }
+}
