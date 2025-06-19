@@ -25,7 +25,7 @@ export const typeOrmConfig = async (
     database: dbConfig.database,
     extra: dbConfig.extra,
     autoLoadEntities: true,
-    migrationsRun: true,
+    //migrationsRun: true,
     synchronize: true,
     // entities: [__dirname + '/../../**/*.entity.{js,ts}'],
   };
