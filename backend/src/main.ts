@@ -12,7 +12,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // app.useLogger(app.get(Logger));
+  app.useLogger(app.get(Logger));
   app.use(cookieParser());
 
   await app.listen(conifgService.getOrThrow('PORT'));
