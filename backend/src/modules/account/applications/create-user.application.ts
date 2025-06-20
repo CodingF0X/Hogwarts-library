@@ -3,7 +3,7 @@ import {
   ICreateUserAccountApplication,
   ICreateUserAccountService,
 } from './ports';
-import { Token } from 'src/DI';
+import { Token } from 'src/modules/account/DI';
 import { UserAccountDomain } from '../domain/entities/user-account';
 import { CreateUserAccountDTO } from './DTO/create-user.dto';
 

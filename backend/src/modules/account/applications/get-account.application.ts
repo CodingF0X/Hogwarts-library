@@ -5,7 +5,7 @@ import {
 } from './ports';
 import { Long } from 'typeorm';
 import { UserAccountDomain } from '../domain/entities/user-account';
-import { Token } from 'src/DI';
+import { Token } from 'src/modules/account/DI';
 
 @Injectable()
 export class GetUserAccountApplication implements IGetUserAccountApplication {

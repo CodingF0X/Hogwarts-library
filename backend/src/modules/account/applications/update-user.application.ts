@@ -6,7 +6,7 @@ import {
 import { Long } from 'typeorm';
 import { UserAccountDomain } from '../domain/entities/user-account';
 import { UpdateUserAccountDTO } from './DTO/update-user.dto';
-import { Token } from 'src/DI';
+import { Token } from 'src/modules/account/DI';
 
 @Injectable()
 export class UpdateUserAccountApplication

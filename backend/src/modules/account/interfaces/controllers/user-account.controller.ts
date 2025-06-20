@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { Token } from 'src/DI';
+import { Token } from 'src/modules/account/DI';
 import {
   ICreateUserAccountApplication,
   IGetUserAccountApplication,
