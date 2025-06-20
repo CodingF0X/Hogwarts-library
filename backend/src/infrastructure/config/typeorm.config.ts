@@ -10,9 +10,7 @@ export const typeOrmConfig = async (
     port: number;
     username: string;
     password: string;
-
     schemas: string[];
-
     database: string;
     type: 'postgres';
   }>('database');

@@ -3,9 +3,6 @@ import { Email } from '../../domain/value-objects/email';
 import { UserAccountEntity } from '../../repository/entities/user-account.entity';
 
 export class DomainMapper {
-
-
-       
   public static toAccountDomain(
     userAccountEntity: UserAccountEntity,
   ): UserAccountDomain {
@@ -13,9 +10,24 @@ export class DomainMapper {
 
     const domainProps: UserAccountDomain = {
       ...rest,
-      email: new Email(rawEmail),    
+      email: new Email(rawEmail),
     };
 
     return new UserAccountDomain(domainProps);
+  }
+
+  public static toAccountDomainArray(
+    accounts: UserAccountEntity[],
+  ): UserAccountDomain[] {
+    return accounts.map((account) => {
+      const { email: rawEmail, ...rest } = account;
+
+      const domainProps: UserAccountDomain = {
+        ...rest,
+        email: new Email(rawEmail),
+      };
+
+      return new UserAccountDomain(domainProps);
+    });
   }
 }

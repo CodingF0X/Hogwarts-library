@@ -6,6 +6,8 @@ import { CreateAccountService } from './services/create-account.service';
 import { UserAccountRepository } from './repository/user-account.repository';
 import { DatabaseModule } from 'src/infrastructure/database/database.module';
 import { UserAccountEntity } from './repository/entities/user-account.entity';
+import { GetUserAccountService } from './services/get-account.service';
+import { GetUserAccountApplication } from './applications/get-account.application';
 
 const createAccountApp = {
   provide: Token.APPLICATIONS.CREATE_ACCOUNT,
@@ -14,12 +16,28 @@ const createAccountApp = {
 
 const createAccountService = {
   provide: Token.SERVICES.CREATE_ACCOUNT,
-  useClass: CreateAccountService, 
+  useClass: CreateAccountService,
+};
+
+const getAccountApp = {
+  provide: Token.APPLICATIONS.GET_ACCOUNT,
+  useClass: GetUserAccountApplication,
+};
+
+const getAccountService = {
+  provide: Token.SERVICES.GET_ACCOUNT,
+  useClass: GetUserAccountService,
 };
 @Module({
   imports: [DatabaseModule.forFeature([UserAccountEntity])],
   controllers: [UserAccountController],
-  providers: [createAccountApp, createAccountService, UserAccountRepository],
+  providers: [
+    UserAccountRepository,
+    createAccountApp,
+    createAccountService,
+    getAccountApp,
+    getAccountService,
+  ],
   exports: [],
 })
 export class UsersModule {}
