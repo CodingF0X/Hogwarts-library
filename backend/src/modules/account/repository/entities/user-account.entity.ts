@@ -1,7 +1,7 @@
 import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
 import { Column, Entity, Unique } from 'typeorm';
 
-@Entity({ schema: 'account', name: 'user_account' })
+@Entity({ schema: 'accounts', name: 'user_account' })
 @Unique(['email'])
 export class UserAccountEntity extends AbstractEntity<UserAccountEntity> {
   @Column({ nullable: false, length: 100 })
