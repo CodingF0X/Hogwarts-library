@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ICreateUserAccountService } from '../interfaces';
-import { UserAccountRepository } from '../repository/user-account.repository';
-import { CreateUserAccountDTO } from '../applications/DTO/create-user.dto';
-import { UserAccountDomain } from '../domain/entities/user-account';
-import { DomainMapper } from '../applications/mappers/domain-mapper';
+import { ICreateUserAccountService } from '../ports';
+import { UserAccountRepository } from '../../repository/user-account.repository';
+import { CreateUserAccountDTO } from '../DTO/create-user.dto';
+import { UserAccountDomain } from '../../domain/entities/user-account';
+import { DomainMapper } from '../mappers/domain-mapper';
 
 @Injectable()
 export class CreateAccountService implements ICreateUserAccountService {

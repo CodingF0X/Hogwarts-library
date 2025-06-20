@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   IGetUserAccountApplication,
   IGetUserAccountService,
-} from '../interfaces';
+} from './ports';
 import { Long } from 'typeorm';
 import { UserAccountDomain } from '../domain/entities/user-account';
 import { Token } from 'src/DI';

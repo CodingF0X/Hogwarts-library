@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { UserAccountController } from './controllers/user-account.controller';
+import { UserAccountController } from './interfaces/controllers/user-account.controller';
 import { Token } from 'src/DI';
 import { CreateUserApplication } from './applications/create-user.application';
-import { CreateAccountService } from './services/create-account.service';
+import { CreateAccountService } from './applications/services/create-account.service';
 import { UserAccountRepository } from './repository/user-account.repository';
 import { DatabaseModule } from 'src/infrastructure/database/database.module';
 import { UserAccountEntity } from './repository/entities/user-account.entity';
-import { GetUserAccountService } from './services/get-account.service';
+import { GetUserAccountService } from './applications/services/get-account.service';
 import { GetUserAccountApplication } from './applications/get-account.application';
 
 const createAccountApp = {
@@ -40,4 +40,4 @@ const getAccountService = {
   ],
   exports: [],
 })
-export class UsersModule {}
+export class AccountsModule {}

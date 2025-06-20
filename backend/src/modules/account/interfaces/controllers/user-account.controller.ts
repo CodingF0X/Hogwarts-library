@@ -3,9 +3,9 @@ import { Token } from 'src/DI';
 import {
   ICreateUserAccountApplication,
   IGetUserAccountApplication,
-} from '../interfaces';
-import { CreateUserAccountDTO } from '../applications/DTO/create-user.dto';
-import { UserAccountDomain } from '../domain/entities/user-account';
+} from '../../applications/ports';
+import { CreateUserAccountDTO } from '../../applications/DTO/create-user.dto';
+import { UserAccountDomain } from '../../domain/entities/user-account';
 import { Long } from 'typeorm';
 
 @Controller('/accounts')

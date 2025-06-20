@@ -1,5 +1,5 @@
+import { UserAccountDomain } from "src/modules/account/domain/entities/user-account";
 import { Long } from "typeorm";
-import { UserAccountDomain } from "../../domain/entities/user-account";
 
 export interface IGetUserAccountApplication {
   getById(id: Long): Promise<UserAccountDomain>;

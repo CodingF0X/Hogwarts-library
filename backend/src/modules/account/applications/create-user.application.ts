@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   ICreateUserAccountApplication,
   ICreateUserAccountService,
-} from '../interfaces';
+} from './ports';
 import { Token } from 'src/DI';
 import { UserAccountDomain } from '../domain/entities/user-account';
 import { CreateUserAccountDTO } from './DTO/create-user.dto';
