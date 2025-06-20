@@ -1,4 +1,9 @@
-import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpStatus,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { ICreateUserAccountService } from '../ports';
 import { UserAccountRepository } from '../../repository/user-account.repository';
 import { CreateUserAccountDTO } from '../DTO/create-user.dto';
@@ -7,6 +12,8 @@ import { DomainMapper } from '../mappers/domain-mapper';
 
 @Injectable()
 export class CreateAccountService implements ICreateUserAccountService {
+  private readonly logger = new Logger(CreateAccountService.name);
+
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
   async create(userAccount: CreateUserAccountDTO): Promise<UserAccountDomain> {
@@ -14,8 +21,11 @@ export class CreateAccountService implements ICreateUserAccountService {
       const newUserAccount =
         await this.userAccountRepository.create(userAccount);
 
+      if (newUserAccount) this.logger.log('Account created successfully');
+
       return DomainMapper.toAccountDomain(newUserAccount);
     } catch (error) {
+      this.logger.error(error.message);
       throw new BadRequestException(error.message);
     }
   }
