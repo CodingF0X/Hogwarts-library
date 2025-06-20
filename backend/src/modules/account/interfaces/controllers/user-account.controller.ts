@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Inject,
   Param,
@@ -10,6 +11,7 @@ import {
 import { Token } from 'src/modules/account/DI';
 import {
   ICreateUserAccountApplication,
+  IDeleteUserAccountApplication,
   IGetUserAccountApplication,
   IUpdateUserAccountApplication,
 } from '../../applications/ports';
@@ -29,6 +31,9 @@ export class UserAccountController {
 
     @Inject(Token.APPLICATIONS.UPDATE_ACCOUNT)
     private readonly updateAccount: IUpdateUserAccountApplication,
+
+    @Inject(Token.APPLICATIONS.DELETE_ACCOUNT)
+    private readonly deleteAccount: IDeleteUserAccountApplication,
   ) {}
 
   @Post()
@@ -59,5 +64,10 @@ export class UserAccountController {
     @Param('id') id: Long,
   ): Promise<UserAccountDomain> {
     return await this.updateAccount.update(id, userAccount);
+  }
+
+  @Delete('/:id')
+  async delete(@Param('id') id: Long): Promise<string> {
+    return await this.deleteAccount.delete(id);
   }
 }

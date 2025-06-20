@@ -1,10 +1,16 @@
 import { Token } from 'src/modules/account/DI';
-import { CreateUserApplication } from 'src/modules/account/applications/create-user.application';
-import { GetUserAccountApplication } from 'src/modules/account/applications/get-account.application';
-import { CreateAccountService } from 'src/modules/account/applications/services/create-account.service';
-import { GetUserAccountService } from 'src/modules/account/applications/services/get-account.service';
-import { UpdateUserAccountService } from 'src/modules/account/applications/services/update-account.service';
-import { UpdateUserAccountApplication } from 'src/modules/account/applications/update-user.application';
+import {
+  CreateAccountService,
+  DeleteAccountService,
+  GetUserAccountService,
+  UpdateUserAccountService,
+} from '../applications/services';
+import {
+  CreateUserApplication,
+  DeleteUserAccountApplication,
+  GetUserAccountApplication,
+  UpdateUserAccountApplication,
+} from '../applications';
 
 export class AccountsProviders {
   // application layer
@@ -21,6 +27,11 @@ export class AccountsProviders {
     useClass: UpdateUserAccountApplication,
   };
 
+  static readonly DELETE_ACCOUNT_APP = {
+    provide: Token.APPLICATIONS.DELETE_ACCOUNT,
+    useClass: DeleteUserAccountApplication,
+  };
+
   // service layer
   static readonly CREATE_ACCOUNT_SVC = {
     provide: Token.SERVICES.CREATE_ACCOUNT,
@@ -35,6 +46,11 @@ export class AccountsProviders {
     useClass: UpdateUserAccountService,
   };
 
+  static readonly DELETE_ACCOUNT_SVC = {
+    provide: Token.SERVICES.DELETE_ACCOUNT,
+    useClass: DeleteAccountService,
+  };
+
   static readonly all = [
     AccountsProviders.CREATE_ACCOUNT_APP,
     AccountsProviders.CREATE_ACCOUNT_SVC,
@@ -42,5 +58,7 @@ export class AccountsProviders {
     AccountsProviders.GET_ACCOUNT_SVC,
     AccountsProviders.UPDATE_ACCOUNT_APP,
     AccountsProviders.UPDATE_ACCOUNT_SVC,
+    AccountsProviders.DELETE_ACCOUNT_APP,
+    AccountsProviders.DELETE_ACCOUNT_SVC,
   ];
 }
