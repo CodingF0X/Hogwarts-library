@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { IUpdateUserAccountService } from '../ports';
 import { Long } from 'typeorm';
 import { UserAccountDomain } from '../../domain/entities/user-account';
@@ -22,7 +22,9 @@ export class UpdateUserAccountService implements IUpdateUserAccountService {
 
       return DomainMapper.toAccountDomain(userAccount);
     } catch (error) {
-      throw new Error(`Error updating user account: ${error.message}`);
+      throw new BadRequestException(
+        `Error updating user account: ${error.message}`,
+      );
     }
   }
 }

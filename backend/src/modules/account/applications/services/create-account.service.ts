@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
 import { ICreateUserAccountService } from '../ports';
 import { UserAccountRepository } from '../../repository/user-account.repository';
 import { CreateUserAccountDTO } from '../DTO/create-user.dto';
@@ -16,7 +16,7 @@ export class CreateAccountService implements ICreateUserAccountService {
 
       return DomainMapper.toAccountDomain(newUserAccount);
     } catch (error) {
-        throw new Error(error);
+      throw new BadRequestException(error.message);
     }
   }
 }

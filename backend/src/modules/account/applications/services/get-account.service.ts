@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { IGetUserAccountService } from '../ports';
 import { UserAccountDomain } from '../../domain/entities/user-account';
 import { UserAccountRepository } from '../../repository/user-account.repository';
@@ -16,7 +16,7 @@ export class GetUserAccountService implements IGetUserAccountService {
 
       return DomainMapper.toAccountDomain(account);
     } catch (error) {
-      throw new Error(error.message);
+      throw new NotFoundException(error.message);
     }
   }
 
@@ -25,7 +25,7 @@ export class GetUserAccountService implements IGetUserAccountService {
       const account = await this.userAccountRepository.findOne({ email });
       return DomainMapper.toAccountDomain(account);
     } catch (error) {
-      throw new Error(error.message);
+      throw new NotFoundException(error.message);
     }
   }
 

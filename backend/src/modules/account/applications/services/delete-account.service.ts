@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { IDeleteUserAccountService } from '../ports';
 import { UserAccountRepository } from '../../repository/user-account.repository';
 import { Long } from 'typeorm';
@@ -11,7 +11,7 @@ export class DeleteAccountService implements IDeleteUserAccountService {
     try {
       return await this.userAccountRepository.findOneAndDelete({ userId });
     } catch (error) {
-      throw new Error(`Error deleting user: ${error.message}`);
+      throw new BadRequestException(`Error deleting user: ${error.message}`);
     }
   }
 }
