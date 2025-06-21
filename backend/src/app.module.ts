@@ -4,6 +4,7 @@ import { DatabaseModule } from './infrastructure/database/database.module';
 import { AccountsModule } from './modules/account/accounts.module';
 import { ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @Module({
   imports: [AccountsModule, ConfigModule, DatabaseModule, 
@@ -32,7 +33,7 @@ import { LoggerModule } from 'nestjs-pino';
           },
         },
       }),
-    }),
+    }), ProfileModule,
   ],
   controllers: [],
   providers: [],

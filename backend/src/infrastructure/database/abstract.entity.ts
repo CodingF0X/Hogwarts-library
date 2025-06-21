@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 export class AbstractEntity<T> {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   userId!: Long;
 
   @CreateDateColumn({ type: 'timestamp' })
@@ -15,7 +15,7 @@ export class AbstractEntity<T> {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt!: Date;
-  
+
   constructor(entity: Partial<T>) {
     Object.assign(this, entity);
   }

@@ -1,5 +1,13 @@
 import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
-import { Column, Entity, Unique } from 'typeorm';
+import { ProfileEntity } from 'src/modules/profile/repository/entities/profile.entity';
+import {
+  AfterInsert,
+  Column,
+  Entity,
+  getRepository,
+  OneToOne,
+  Unique,
+} from 'typeorm';
 
 @Entity({ schema: 'accounts', name: 'user_account' })
 @Unique(['email'])
@@ -12,6 +20,12 @@ export class UserAccountEntity extends AbstractEntity<UserAccountEntity> {
 
   @Column({ nullable: false, length: 255 })
   password: string;
+
+  @OneToOne(() => ProfileEntity, (profile) => profile.userAccount, {
+    cascade: ['insert'],
+    eager: false,
+  })
+  profile: ProfileEntity;
 
   constructor(userAccount: Partial<UserAccountEntity>) {
     super(userAccount);
