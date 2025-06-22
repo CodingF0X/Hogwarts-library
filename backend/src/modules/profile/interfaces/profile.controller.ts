@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Param, Patch } from '@nestjs/common';
 import { PROFILE_TOKEN } from '../DI/injection.token';
 import {
   IGetProfileApplication,
@@ -22,7 +22,7 @@ export class ProfileController {
   }
 
   @Patch('/:id')
-  async updateProfile(@Param('id') id: number, data: UpdateProfileDTO) {
+  async updateProfile(@Param('id') id: number, @Body() data: UpdateProfileDTO) {
     return await this.updateProfileApp.updateProfile(id, data);
   }
 }
