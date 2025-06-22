@@ -5,8 +5,9 @@ import {
 } from 'typeorm';
 
 export class AbstractEntity<T> {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
-  userId!: number;
+  
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

@@ -10,9 +10,9 @@ export class GetProfileService implements IGetProfileService {
 
   constructor(private readonly profileRepository: ProfileRepository) {}
 
-  getProfile(userId: number): Promise<ProfileDomain> {
+  getProfile(id: string): Promise<ProfileDomain> {
     try {
-      return this.profileRepository.findOne({ userId });
+      return this.profileRepository.findOne({ id });
     } catch (error) {
       this.logger.error(error.message);
       throw new BadRequestException(error.message);

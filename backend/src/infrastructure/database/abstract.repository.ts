@@ -1,18 +1,23 @@
 import { Logger, NotFoundException } from '@nestjs/common';
 import { AbstractEntity } from './abstract.entity';
-import { DeepPartial, EntityManager, FindOptionsWhere, Repository } from 'typeorm';
+import {
+  DeepPartial,
+  EntityManager,
+  FindOptionsWhere,
+  Repository,
+} from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 export abstract class AbstractRepository<T extends AbstractEntity<T>> {
   protected abstract readonly logger: Logger;
 
   constructor(
-   protected readonly entityRepository: Repository<T>,
-   protected readonly entityManager: EntityManager,
+    protected readonly entityRepository: Repository<T>,
+    protected readonly entityManager: EntityManager,
   ) {}
 
   async create(entity: DeepPartial<T>): Promise<T> {
-    const e =  this.entityRepository.create(entity);
+    const e = this.entityRepository.create(entity);
     return this.entityManager.save(e);
   }
 
@@ -26,7 +31,7 @@ export abstract class AbstractRepository<T extends AbstractEntity<T>> {
     return entity as T;
   }
 
-  async findOneById(where: FindOptionsWhere<T>): Promise<T>{
+  async findOneById(where: FindOptionsWhere<T>): Promise<T> {
     const entity = await this.entityRepository.findOneBy(where);
     if (!entity) {
       this.logger.warn(`Could not find entity with where condition ${where}`);
@@ -60,8 +65,8 @@ export abstract class AbstractRepository<T extends AbstractEntity<T>> {
 
   async findOneAndDelete(where: FindOptionsWhere<T>): Promise<string> {
     const entity = await this.findOneById(where);
-    await this.entityRepository.delete(entity.userId.toString());
+    await this.entityRepository.delete(entity.id.toString());
 
-    return `Entity with ID ${entity.userId} has been deleted`;
+    return `Entity with ID ${entity.id} has been deleted`;
   }
 }

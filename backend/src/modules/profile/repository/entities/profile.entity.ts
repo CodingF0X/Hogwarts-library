@@ -4,8 +4,8 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity({ schema: 'profile', name: 'user_profile' })
 export class ProfileEntity extends AbstractAudit {
-  @PrimaryColumn({ type: 'bigint', nullable: false, unique: true })
-  userId: number;
+  @PrimaryColumn({ type: 'uuid', nullable: false, unique: true })
+  id: string;
 
   @Column({ type: 'int', nullable: true })
   phone: number;
@@ -24,7 +24,7 @@ export class ProfileEntity extends AbstractAudit {
     eager: true,
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'id' })
   userAccount: UserAccountEntity;
 
   // constructor(userProfile: Partial<ProfileEntity>) {

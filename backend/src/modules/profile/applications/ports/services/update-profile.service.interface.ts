@@ -2,5 +2,5 @@ import { ProfileDomain } from 'src/modules/profile/domain/entities/profile.domai
 import { UpdateProfileDTO } from '../../DTO/update-profile.dto';
 
 export interface IUpdateProfileService {
-  updateProfile(userId: number, data: UpdateProfileDTO): Promise<ProfileDomain>;
+  updateProfile(userId: string, data: UpdateProfileDTO): Promise<ProfileDomain>;
 }

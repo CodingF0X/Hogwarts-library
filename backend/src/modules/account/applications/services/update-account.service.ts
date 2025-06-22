@@ -12,12 +12,12 @@ export class UpdateUserAccountService implements IUpdateUserAccountService {
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
   async update(
-    userId: number,
+    id: string,
     data: UpdateUserAccountDTO,
   ): Promise<UserAccountDomain> {
     try {
       const userAccount = await this.userAccountRepository.findOneAndUpdate(
-        { userId },
+        { id },
         data,
       );
 

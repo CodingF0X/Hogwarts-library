@@ -17,12 +17,12 @@ export class ProfileController {
   ) {}
 
   @Get('/:id')
-  async getProfile(@Param('id') userId: number) {
-    return await this.getProfileApp.getProfile(userId);
+  async getProfile(@Param('id') id: string) {
+    return await this.getProfileApp.getProfile(id);
   }
 
   @Patch('/:id')
-  async updateProfile(@Param('id') userId: number, data: UpdateProfileDTO) {
-    return await this.updateProfileApp.updateProfile(userId, data);
+  async updateProfile(@Param('id') id: string, data: UpdateProfileDTO) {
+    return await this.updateProfileApp.updateProfile(id, data);
   }
 }

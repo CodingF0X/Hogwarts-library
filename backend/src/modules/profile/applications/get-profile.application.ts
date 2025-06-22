@@ -10,7 +10,7 @@ export class GetProfileApplication implements IGetProfileApplication {
     @Inject(PROFILE_TOKEN.SERVICES.GET_PROFILE)
     private readonly getProfileService: IGetProfileService,
   ) {}
-  async getProfile(userId: number): Promise<ProfileDomain> {
-    return await this.getProfileService.getProfile(userId);
+  async getProfile(id: string): Promise<ProfileDomain> {
+    return await this.getProfileService.getProfile(id);
   }
 }

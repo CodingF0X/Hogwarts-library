@@ -1,3 +1,3 @@
 export interface IDeleteUserAccountApplication {
-  delete(userId: number): Promise<string>;
+  delete(userId: string): Promise<string>;
 }

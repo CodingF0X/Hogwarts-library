@@ -12,12 +12,12 @@ export class UpdateProfileService implements IUpdateProfileService {
 
   constructor(private readonly profileRepository: ProfileRepository) {}
   async updateProfile(
-    userId: number,
+    id: string,
     data: UpdateProfileDTO,
   ): Promise<ProfileDomain> {
     try {
       const profile = await this.profileRepository.findOneAndUpdate(
-        { userId },
+        { id },
         data,
       );
 

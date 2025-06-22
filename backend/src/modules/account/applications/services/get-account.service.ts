@@ -11,9 +11,9 @@ export class GetUserAccountService implements IGetUserAccountService {
 
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
-  async getById(userId: number): Promise<UserAccountDomain> {
+  async getById(id: string): Promise<UserAccountDomain> {
     try {
-      const account = await this.userAccountRepository.findOneById({ userId });
+      const account = await this.userAccountRepository.findOneById({ id });
 
       if (account) {
         this.logger.log('Account found');

@@ -13,9 +13,9 @@ export class UpdateProfileApplication implements IUpdateProfileApplication {
   ) {}
 
   async updateProfile(
-    userId: number,
+    id: string,
     data: UpdateProfileDTO,
   ): Promise<ProfileDomain> {
-    return await this.updateProfileService.updateProfile(userId, data);
+    return await this.updateProfileService.updateProfile(id, data);
   }
 }

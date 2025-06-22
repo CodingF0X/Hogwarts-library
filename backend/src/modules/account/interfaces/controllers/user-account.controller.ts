@@ -48,7 +48,7 @@ export class UserAccountController {
   }
 
   @Get('/id/:id')
-  async getOne(@Param('id') id: number): Promise<UserAccountDomain> {
+  async getOne(@Param('id') id: string): Promise<UserAccountDomain> {
     return await this.getAccount.getById(id);
   }
 
@@ -60,13 +60,13 @@ export class UserAccountController {
   @Patch('/:id')
   async update(
     @Body() userAccount: UpdateUserAccountDTO,
-    @Param('id') id: number,
+    @Param('id') id: string,
   ): Promise<UserAccountDomain> {
     return await this.updateAccount.update(id, userAccount);
   }
 
   @Delete('/:id')
-  async delete(@Param('id') id: number): Promise<string> {
+  async delete(@Param('id') id: string): Promise<string> {
     return await this.deleteAccount.delete(id);
   }
 }
