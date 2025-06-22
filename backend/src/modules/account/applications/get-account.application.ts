@@ -14,7 +14,7 @@ export class GetUserAccountApplication implements IGetUserAccountApplication {
     private readonly getAccountService: IGetUserAccountService,
   ) {}
 
-  async getById(userId: string): Promise<UserAccountDomain> {
+  async getById(userId: number): Promise<UserAccountDomain> {
     return await this.getAccountService.getById(userId);
   }
   async getByEmail(email: string): Promise<UserAccountDomain> {

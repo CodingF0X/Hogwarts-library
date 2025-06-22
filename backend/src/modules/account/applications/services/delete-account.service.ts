@@ -8,7 +8,7 @@ export class DeleteAccountService implements IDeleteUserAccountService {
 
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
-  async delete(id: string): Promise<string> {
+  async delete(id: number): Promise<string> {
     try {
       const account = await this.userAccountRepository.findOneAndDelete({
         id,

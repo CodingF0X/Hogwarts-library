@@ -10,7 +10,7 @@ export class GetProfileService implements IGetProfileService {
 
   constructor(private readonly profileRepository: ProfileRepository) {}
 
-  getProfile(id: string): Promise<ProfileDomain> {
+  getProfile(id: number): Promise<ProfileDomain> {
     try {
       return this.profileRepository.findOne({ id });
     } catch (error) {

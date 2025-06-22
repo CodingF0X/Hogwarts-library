@@ -4,8 +4,8 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity({ schema: 'profile', name: 'user_profile' })
 export class ProfileEntity extends AbstractAudit {
-  @PrimaryColumn({ type: 'uuid', nullable: false, unique: true })
-  id: string;
+  @PrimaryColumn({ type: 'bigint', nullable: false, unique: true })
+  id: number;
 
   @Column({ type: 'int', nullable: true })
   phone: number;

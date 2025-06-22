@@ -3,7 +3,7 @@ import { UpdateUserAccountDTO } from '../../DTO/update-user.dto';
 
 export interface IUpdateUserAccountApplication {
   update(
-    userId: string,
+    userId: number,
     data: UpdateUserAccountDTO,
   ): Promise<UserAccountDomain>;
 }

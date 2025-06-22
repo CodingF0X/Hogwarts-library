@@ -13,7 +13,7 @@ export class UpdateProfileApplication implements IUpdateProfileApplication {
   ) {}
 
   async updateProfile(
-    id: string,
+    id: number,
     data: UpdateProfileDTO,
   ): Promise<ProfileDomain> {
     return await this.updateProfileService.updateProfile(id, data);

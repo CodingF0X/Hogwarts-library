@@ -12,7 +12,7 @@ export class UpdateUserAccountService implements IUpdateUserAccountService {
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
   async update(
-    id: string,
+    id: number,
     data: UpdateUserAccountDTO,
   ): Promise<UserAccountDomain> {
     try {

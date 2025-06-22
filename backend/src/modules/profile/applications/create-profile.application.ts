@@ -8,7 +8,7 @@ export class CreateProfileApplication implements ICreateProfileApplication {
     @Inject(PROFILE_TOKEN.SERVICES.CREATE_PROFILE)
     private readonly createProfileService: ICreateProfileService,
   ) {}
-  createProfile(id: string): Promise<void> {
+  createProfile(id: number): Promise<void> {
     return this.createProfileService.createProfile(id);
   }
 }

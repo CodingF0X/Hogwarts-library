@@ -6,8 +6,8 @@ import {
 
 export class AbstractEntity<T> {
   
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @PrimaryGeneratedColumn({type: 'bigint'})
+  id!: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

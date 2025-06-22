@@ -3,7 +3,6 @@ import {
   IDeleteUserAccountApplication,
   IDeleteUserAccountService,
 } from './ports';
-import { Long } from 'typeorm';
 import { Token } from '../DI';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class DeleteUserAccountApplication
     @Inject(Token.SERVICES.DELETE_ACCOUNT)
     private readonly deleteUserAccountService: IDeleteUserAccountService,
   ) {}
-  async delete(userId: string): Promise<string> {
+  async delete(userId: number): Promise<string> {
     return await this.deleteUserAccountService.delete(userId);
   }
 }
