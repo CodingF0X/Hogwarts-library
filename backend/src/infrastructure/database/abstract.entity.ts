@@ -1,13 +1,11 @@
 import {
-  Column,
   CreateDateColumn,
-  Long,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 export class AbstractEntity<T> {
-  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
+  @PrimaryGeneratedColumn({ type: 'bigint' })
   userId!: number;
 
   @CreateDateColumn({ type: 'timestamp' })

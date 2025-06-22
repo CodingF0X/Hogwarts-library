@@ -1,19 +1,11 @@
-import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
+import { AbstractAudit } from 'src/infrastructure/database/abstract-audit.entity';
 import { UserAccountEntity } from 'src/modules/account/repository/entities/user-account.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryColumn,
-  Unique,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity({ schema: 'profile', name: 'user_profile' })
-@Unique(['userId'])
-export class ProfileEntity extends AbstractEntity<ProfileEntity> {
-  @PrimaryColumn({ type: 'bigint' })
-  declare userId: number;
+export class ProfileEntity extends AbstractAudit {
+  @PrimaryColumn({ type: 'bigint', nullable: false, unique: true })
+  userId: number;
 
   @Column({ type: 'int', nullable: true })
   phone: number;
@@ -35,8 +27,8 @@ export class ProfileEntity extends AbstractEntity<ProfileEntity> {
   @JoinColumn({ name: 'userId' })
   userAccount: UserAccountEntity;
 
-  constructor(userProfile: Partial<ProfileEntity>) {
-    super(userProfile);
-    // Object.assign(this, userAccount);
-  }
+  // constructor(userProfile: Partial<ProfileEntity>) {
+  //   super(userProfile);
+  //   // Object.assign(this, userAccount);
+  // }
 }
