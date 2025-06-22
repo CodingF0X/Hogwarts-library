@@ -27,9 +27,13 @@ export class CreateAccountService implements ICreateUserAccountService {
       const newUserAccount =
         await this.userAccountRepository.create(userAccount);
 
-      await this.profileRepository.createProfile();
-      if (newUserAccount) {
+      const userProfile = await this.profileRepository.createProfile(newUserAccount.userId);
+      
+      if (newUserAccount || userProfile) {
         this.logger.log('Account created successfully');
+      } else {
+        this.logger.error('Account creation failed');
+        throw new BadRequestException('Account creation failed');
       }
 
       return DomainMapper.toAccountDomain(newUserAccount);

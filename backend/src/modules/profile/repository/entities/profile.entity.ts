@@ -4,7 +4,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  Long,
   OneToOne,
   PrimaryColumn,
   Unique,
@@ -14,7 +13,7 @@ import {
 @Unique(['userId'])
 export class ProfileEntity extends AbstractEntity<ProfileEntity> {
   @PrimaryColumn({ type: 'bigint' })
-  declare userId: Long;
+  declare userId: number;
 
   @Column({ type: 'int', nullable: true })
   phone: number;

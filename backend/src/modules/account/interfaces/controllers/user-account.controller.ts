@@ -17,7 +17,6 @@ import {
 } from '../../applications/ports';
 import { CreateUserAccountDTO } from '../../applications/DTO/create-user.dto';
 import { UserAccountDomain } from '../../domain/entities/user-account';
-import { Long } from 'typeorm';
 import { UpdateUserAccountDTO } from '../../applications/DTO/update-user.dto';
 
 @Controller('/accounts')
@@ -49,7 +48,7 @@ export class UserAccountController {
   }
 
   @Get('/id/:id')
-  async getOne(@Param('id') id: Long): Promise<UserAccountDomain> {
+  async getOne(@Param('id') id: number): Promise<UserAccountDomain> {
     return await this.getAccount.getById(id);
   }
 
@@ -61,13 +60,13 @@ export class UserAccountController {
   @Patch('/:id')
   async update(
     @Body() userAccount: UpdateUserAccountDTO,
-    @Param('id') id: Long,
+    @Param('id') id: number,
   ): Promise<UserAccountDomain> {
     return await this.updateAccount.update(id, userAccount);
   }
 
   @Delete('/:id')
-  async delete(@Param('id') id: Long): Promise<string> {
+  async delete(@Param('id') id: number): Promise<string> {
     return await this.deleteAccount.delete(id);
   }
 }

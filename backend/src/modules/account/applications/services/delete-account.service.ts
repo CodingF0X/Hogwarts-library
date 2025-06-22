@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { IDeleteUserAccountService } from '../ports';
 import { UserAccountRepository } from '../../repository/user-account.repository';
-import { Long } from 'typeorm';
 
 @Injectable()
 export class DeleteAccountService implements IDeleteUserAccountService {
@@ -9,7 +8,7 @@ export class DeleteAccountService implements IDeleteUserAccountService {
 
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
-  async delete(userId: Long): Promise<string> {
+  async delete(userId: number): Promise<string> {
     try {
       const account = await this.userAccountRepository.findOneAndDelete({
         userId,

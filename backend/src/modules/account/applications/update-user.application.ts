@@ -18,9 +18,9 @@ export class UpdateUserAccountApplication
   ) {}
 
   async update(
-    id: Long,
+    userId: number,
     data: UpdateUserAccountDTO,
   ): Promise<UserAccountDomain> {
-    return await this.updateAccountService.update(id, data);
+    return await this.updateAccountService.update(userId, data);
   }
 }

@@ -1,10 +1,8 @@
 import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
 import { ProfileEntity } from 'src/modules/profile/repository/entities/profile.entity';
 import {
-  AfterInsert,
   Column,
   Entity,
-  getRepository,
   OneToOne,
   Unique,
 } from 'typeorm';

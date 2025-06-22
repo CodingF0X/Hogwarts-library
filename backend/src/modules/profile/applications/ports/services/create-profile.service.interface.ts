@@ -1,3 +1,3 @@
 export interface ICreateProfileService {
-  createProfile(): Promise<void>;
+  createProfile(userId: number): Promise<void>;
 }

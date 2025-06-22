@@ -8,7 +8,7 @@ import {
 
 export class AbstractEntity<T> {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-  userId!: Long;
+  userId!: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

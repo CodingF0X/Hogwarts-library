@@ -1,5 +1,3 @@
-import { Long } from 'typeorm';
-
 export interface IDeleteUserAccountService {
-  delete(userId: Long): Promise<string>;
+  delete(userId: number): Promise<string>;
 }

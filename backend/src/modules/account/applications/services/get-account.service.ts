@@ -3,7 +3,6 @@ import { IGetUserAccountService } from '../ports';
 import { UserAccountDomain } from '../../domain/entities/user-account';
 import { UserAccountRepository } from '../../repository/user-account.repository';
 import { DomainMapper } from '../mappers/domain-mapper';
-import { Long } from 'typeorm';
 import { UserAccountEntity } from '../../repository/entities/user-account.entity';
 
 @Injectable()
@@ -12,7 +11,7 @@ export class GetUserAccountService implements IGetUserAccountService {
 
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
-  async getById(userId: Long): Promise<UserAccountDomain> {
+  async getById(userId: number): Promise<UserAccountDomain> {
     try {
       const account = await this.userAccountRepository.findOneById({ userId });
 

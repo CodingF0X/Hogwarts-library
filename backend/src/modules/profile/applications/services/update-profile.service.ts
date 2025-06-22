@@ -12,7 +12,7 @@ export class UpdateProfileService implements IUpdateProfileService {
 
   constructor(private readonly profileRepository: ProfileRepository) {}
   async updateProfile(
-    userId: Long,
+    userId: number,
     data: UpdateProfileDTO,
   ): Promise<ProfileDomain> {
     try {

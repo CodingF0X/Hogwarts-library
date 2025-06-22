@@ -14,7 +14,7 @@ export class DeleteUserAccountApplication
     @Inject(Token.SERVICES.DELETE_ACCOUNT)
     private readonly deleteUserAccountService: IDeleteUserAccountService,
   ) {}
-  async delete(userId: Long): Promise<string> {
+  async delete(userId: number): Promise<string> {
     return await this.deleteUserAccountService.delete(userId);
   }
 }

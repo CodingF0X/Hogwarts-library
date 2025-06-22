@@ -6,8 +6,8 @@ import { ICreateProfileService } from '../ports/services/create-profile.service.
 @Injectable()
 export class CreateProfileService implements ICreateProfileService {
   constructor(private readonly profileRepository: ProfileRepository) {}
-  async createProfile(): Promise<ProfileEntity | any> {
-    const profile = new ProfileEntity({});
+  async createProfile(userId: number): Promise<ProfileEntity | any> {
+    const profile = new ProfileEntity({ userId: userId });
     return await this.profileRepository.create(profile);
   }
 }

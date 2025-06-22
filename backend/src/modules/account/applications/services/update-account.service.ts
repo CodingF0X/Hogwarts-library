@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { IUpdateUserAccountService } from '../ports';
-import { Long } from 'typeorm';
 import { UserAccountDomain } from '../../domain/entities/user-account';
 import { UpdateUserAccountDTO } from '../DTO/update-user.dto';
 import { UserAccountRepository } from '../../repository/user-account.repository';
@@ -13,7 +12,7 @@ export class UpdateUserAccountService implements IUpdateUserAccountService {
   constructor(private readonly userAccountRepository: UserAccountRepository) {}
 
   async update(
-    userId: Long,
+    userId: number,
     data: UpdateUserAccountDTO,
   ): Promise<UserAccountDomain> {
     try {

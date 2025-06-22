@@ -4,7 +4,6 @@ import {
   IGetProfileApplication,
   IUpdateProfileApplication,
 } from '../applications/ports';
-import { Long } from 'typeorm';
 import { UpdateProfileDTO } from '../applications/DTO/update-profile.dto';
 
 @Controller('/profile')
@@ -17,14 +16,13 @@ export class ProfileController {
     private readonly getProfileApp: IGetProfileApplication,
   ) {}
 
-
   @Get('/:id')
-  async getProfile(@Param('id') userId: Long) {
+  async getProfile(@Param('id') userId: number) {
     return await this.getProfileApp.getProfile(userId);
   }
 
   @Patch('/:id')
-  async updateProfile(@Param('id') userId: Long, data: UpdateProfileDTO) {
+  async updateProfile(@Param('id') userId: number, data: UpdateProfileDTO) {
     return await this.updateProfileApp.updateProfile(userId, data);
   }
 }
