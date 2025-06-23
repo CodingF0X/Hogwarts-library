@@ -2,7 +2,7 @@ import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { IVerifyUserService } from '../ports';
 import { UserAccountDomain } from '../../domain/entities/user-account';
 import { UserAccountRepository } from '../../repository/user-account.repository';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { DomainMapper } from '../mappers/domain-mapper';
 
 @Injectable()
@@ -16,10 +16,12 @@ export class VerifyUserService implements IVerifyUserService {
   ): Promise<Omit<UserAccountDomain, 'password'>> {
     try {
       const account = await this.userAccountRepo.findOne({ email });
-      const passwordValid = await bcrypt.compare(
-        password,
-        (await account).password,
-      );
+      // const passwordValid = await bcrypt.compare(
+      //   password,
+      //   (await account).password,
+      // );
+
+      const passwordValid = password === (await account).password
 
       if (!passwordValid) {
         this.logger.error('Invalid Credentials');

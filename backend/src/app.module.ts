@@ -5,10 +5,16 @@ import { AccountsModule } from './modules/account/accounts.module';
 import { ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { ProfileModule } from './modules/profile/profile.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [AccountsModule, ConfigModule, DatabaseModule, 
-      LoggerModule.forRootAsync({
+  imports: [
+    AccountsModule,
+    AuthModule,
+    ProfileModule,
+    ConfigModule,
+    DatabaseModule,
+    LoggerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         pinoHttp: {
@@ -33,7 +39,7 @@ import { ProfileModule } from './modules/profile/profile.module';
           },
         },
       }),
-    }), ProfileModule,
+    }),
   ],
   controllers: [],
   providers: [],
