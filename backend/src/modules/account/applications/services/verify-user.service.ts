@@ -16,12 +16,10 @@ export class VerifyUserService implements IVerifyUserService {
   ): Promise<Omit<UserAccountDomain, 'password'>> {
     try {
       const account = await this.userAccountRepo.findOne({ email });
-      // const passwordValid = await bcrypt.compare(
-      //   password,
-      //   (await account).password,
-      // );
-
-      const passwordValid = password === (await account).password
+      const passwordValid = await bcrypt.compare(
+        password,
+        (await account).password,
+      );
 
       if (!passwordValid) {
         this.logger.error('Invalid Credentials');
