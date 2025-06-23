@@ -4,5 +4,5 @@ export interface IAddress {
   readonly city: string;
   readonly state: string;
   readonly country: string;
-  readonly zipCode: string;
+  readonly zipCode: number;
 }

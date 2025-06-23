@@ -5,6 +5,7 @@ import {
   IUpdateProfileApplication,
 } from '../applications/ports';
 import { UpdateProfileDTO } from '../applications/DTO/update-profile.dto';
+import { ProfileDomain } from '../domain/entities/profile.domain';
 
 @Controller('/profile')
 export class ProfileController {
@@ -17,12 +18,15 @@ export class ProfileController {
   ) {}
 
   @Get('/:id')
-  async getProfile(@Param('id') id: number) {
+  async getProfile(@Param('id') id: number): Promise<ProfileDomain> {
     return await this.getProfileApp.getProfile(id);
   }
 
   @Patch('/:id')
-  async updateProfile(@Param('id') id: number, @Body() data: UpdateProfileDTO) {
+  async updateProfile(
+    @Param('id') id: number,
+    @Body() data: UpdateProfileDTO,
+  ): Promise<ProfileDomain> {
     return await this.updateProfileApp.updateProfile(id, data);
   }
 }
