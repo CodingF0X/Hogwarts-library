@@ -12,7 +12,7 @@ export class VerifyUserApplication implements IVerifyUserApplication {
   async verifyUser(
     email: string,
     password: string,
-  ): Promise<UserAccountDomain> {
+  ): Promise<Omit<UserAccountDomain, 'password'>> {
     return await this.verifyUserService.verifyUser(email, password);
   }
 }

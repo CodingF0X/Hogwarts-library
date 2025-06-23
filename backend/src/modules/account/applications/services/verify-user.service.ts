@@ -13,7 +13,7 @@ export class VerifyUserService implements IVerifyUserService {
   async verifyUser(
     email: string,
     password: string,
-  ): Promise<UserAccountDomain> {
+  ): Promise<Omit<UserAccountDomain, 'password'>> {
     try {
       const account = await this.userAccountRepo.findOne({ email });
       const passwordValid = await bcrypt.compare(
@@ -27,7 +27,10 @@ export class VerifyUserService implements IVerifyUserService {
       }
 
       this.logger.log('Successful login');
-      return DomainMapper.toAccountDomain(account);
+      const domainAccount = DomainMapper.toAccountDomain(account);
+      const { password: _, ...userWithoutPassword } = domainAccount;
+
+      return userWithoutPassword;
     } catch (error) {
       this.logger.error(error.message);
       throw new UnauthorizedException(error.message);
