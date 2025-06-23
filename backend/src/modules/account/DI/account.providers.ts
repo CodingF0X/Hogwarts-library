@@ -11,6 +11,8 @@ import {
   GetUserAccountApplication,
   UpdateUserAccountApplication,
 } from '../applications';
+import { VerifyUserApplication } from '../applications/verify-user.application';
+import { VerifyUserService } from '../applications/services/verify-user.service';
 
 export class AccountsProviders {
   // application layer
@@ -32,6 +34,10 @@ export class AccountsProviders {
     useClass: DeleteUserAccountApplication,
   };
 
+  static readonly LOGIN_APP = {
+    provide: Token.APPLICATIONS.LOGIN,
+    useClass: VerifyUserApplication,
+  };
   // service layer
   static readonly CREATE_ACCOUNT_SVC = {
     provide: Token.SERVICES.CREATE_ACCOUNT,
@@ -51,6 +57,11 @@ export class AccountsProviders {
     useClass: DeleteAccountService,
   };
 
+  static readonly LOGIN_SVC = {
+    provide: Token.SERVICES.LOGIN,
+    useClass: VerifyUserService,
+  };
+
   static readonly all = [
     AccountsProviders.CREATE_ACCOUNT_APP,
     AccountsProviders.CREATE_ACCOUNT_SVC,
@@ -60,5 +71,7 @@ export class AccountsProviders {
     AccountsProviders.UPDATE_ACCOUNT_SVC,
     AccountsProviders.DELETE_ACCOUNT_APP,
     AccountsProviders.DELETE_ACCOUNT_SVC,
+    AccountsProviders.LOGIN_APP,
+    AccountsProviders.LOGIN_SVC,
   ];
 }
