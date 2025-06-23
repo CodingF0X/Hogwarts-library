@@ -9,23 +9,26 @@ import { UserAccountRepository } from '../../repository/user-account.repository'
 import { CreateUserAccountDTO } from '../DTO/create-user.dto';
 import { UserAccountDomain } from '../../domain/entities/user-account';
 import { DomainMapper } from '../mappers/domain-mapper';
-import { ICreateProfileApplication } from 'src/modules/profile/applications/ports';
-import { PROFILE_TOKEN } from 'src/modules/profile/DI';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class CreateAccountService implements ICreateUserAccountService {
   private readonly logger = new Logger(CreateAccountService.name);
 
-  constructor(
-    private readonly userAccountRepository: UserAccountRepository,
-    @Inject(PROFILE_TOKEN.APPLICATIONS.CREATE_PROFILE)
-    private readonly profileRepository: ICreateProfileApplication,
-  ) {}
+  constructor(private readonly userAccountRepository: UserAccountRepository) {}
+
+  async hashedPassword(password: string): Promise<string> {
+    const password_hashed = await bcrypt.hash(password, 10);
+    return password_hashed;
+  }
 
   async create(userAccount: CreateUserAccountDTO): Promise<UserAccountDomain> {
     try {
       const newUserAccount =
-        await this.userAccountRepository.create(userAccount);
+        await this.userAccountRepository.create({
+          ...userAccount,
+          password: await this.hashedPassword(userAccount.password),
+        });
       if (newUserAccount) this.logger.log('Account created successfully');
 
       return DomainMapper.toAccountDomain(newUserAccount);
