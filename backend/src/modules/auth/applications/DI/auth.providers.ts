@@ -1,4 +1,5 @@
 import { LoginService } from '../services/login.service';
+import { LogoutService } from '../services/logout.service';
 import { TOKEN } from './tokens';
 
 export class AuthProviders {
@@ -7,5 +8,10 @@ export class AuthProviders {
     useClass: LoginService,
   };
 
-  static readonly all = [this.login_SVC];
+  static readonly logout_SVC = {
+    provide: TOKEN.SERVICS.LOGOUT,
+    useClass: LogoutService,
+  };
+
+  static readonly all = [this.login_SVC, this.logout_SVC];
 }
