@@ -7,6 +7,7 @@ import { ILoginService } from './applications/ports/services/login.service.inter
 import { LoginResponse } from './applications/ports/jwt/login.response';
 import { LocalAuthGuard } from './guards/local.guard';
 import { ILogoutService } from './applications/ports/services/logout.service.interface';
+import { Public } from './public.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +17,7 @@ export class AuthController {
     private readonly logoutService: ILogoutService,
   ) {}
 
+  @Public()
   @Post('login')
   @UseGuards(LocalAuthGuard)
   login(
@@ -25,6 +27,7 @@ export class AuthController {
     return this.loginService.login(user, response);
   }
 
+  @Public()
   @Post('logout')
   logout(@Res({ passthrough: true }) response: Response): string {
     return this.logoutService.logout(response);

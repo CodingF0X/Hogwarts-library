@@ -6,6 +6,8 @@ import { ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { ProfileModule } from './modules/profile/profile.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtGuard } from './modules/auth/guards/jwt.guard';
 
 @Module({
   imports: [
@@ -42,6 +44,11 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
+  ],
 })
 export class AppModule {}
