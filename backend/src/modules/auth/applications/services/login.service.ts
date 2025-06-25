@@ -26,6 +26,7 @@ export class LoginService implements ILoginService {
     const tokenPayload: JwtPayload = {
       userName: user.userName,
       email: user.email,
+      role: user.role,
     };
 
     const accessToken = this.jwtService.sign(tokenPayload);
