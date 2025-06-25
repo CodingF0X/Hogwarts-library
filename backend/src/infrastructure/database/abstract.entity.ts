@@ -1,13 +1,10 @@
 import {
   CreateDateColumn,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-export class AbstractEntity<T> {
-  
-  @PrimaryGeneratedColumn({type: 'bigint'})
-  id!: number;
+export abstract class AbstractEntity<T> {
+  abstract id: number | string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

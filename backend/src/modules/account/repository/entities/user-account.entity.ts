@@ -1,11 +1,20 @@
 import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
 import { User_Role } from 'src/modules/auth/roles.enum';
 import { ProfileEntity } from 'src/modules/profile/repository/entities/profile.entity';
-import { Column, Entity, OneToOne, Unique } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
 
 @Entity({ schema: 'accounts', name: 'user_account' })
 @Unique(['email'])
 export class UserAccountEntity extends AbstractEntity<UserAccountEntity> {
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  id: number;
+
   @Column({ nullable: false, length: 100 })
   userName: string;
 

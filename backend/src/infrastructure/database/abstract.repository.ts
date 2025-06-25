@@ -65,8 +65,9 @@ export abstract class AbstractRepository<T extends AbstractEntity<T>> {
 
   async findOneAndDelete(where: FindOptionsWhere<T>): Promise<string> {
     const entity = await this.findOneById(where);
-    await this.entityRepository.delete(entity.id.toString());
+    const id = await this.entityRepository.getId(entity)
+    await this.entityRepository.delete(id);
 
-    return `Entity with ID ${entity.id} has been deleted`;
+    return `Entity with ID ${id} has been deleted`;
   }
 }

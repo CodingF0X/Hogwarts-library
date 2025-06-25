@@ -2,6 +2,7 @@ import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
 import { IAddress } from '../value-objects/address.interface';
 
 export class ProfileDomain extends AbstractEntity<ProfileDomain> {
+  readonly id: number;
   public readonly phone: number;
   public readonly avatar: string;
   public readonly favourites: string[];
