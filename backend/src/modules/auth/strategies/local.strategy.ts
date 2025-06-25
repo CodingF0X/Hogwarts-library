@@ -28,6 +28,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       };
     } catch (error) {}
     this.logger.warn(this.error)
-    throw new UnauthorizedException(this.error);
+    throw new UnauthorizedException('Invalid Credentials - Access Denied');
   }
 }

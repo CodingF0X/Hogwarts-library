@@ -8,6 +8,7 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from './modules/auth/guards/jwt.guard';
+import { RolesGuard } from './modules/auth/guards/roles.guard';
 
 @Module({
   imports: [
@@ -48,6 +49,11 @@ import { JwtGuard } from './modules/auth/guards/jwt.guard';
     {
       provide: APP_GUARD,
       useClass: JwtGuard,
+    },
+
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })

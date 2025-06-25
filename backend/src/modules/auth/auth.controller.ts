@@ -1,5 +1,5 @@
 import { Controller, Inject, Post, Res, UseGuards } from '@nestjs/common';
-import { CurrentUser } from './current-user.decorator';
+import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './applications/ports/jwt/user.interface';
 import { Response } from 'express';
 import { TOKEN } from './applications/DI';
@@ -7,7 +7,7 @@ import { ILoginService } from './applications/ports/services/login.service.inter
 import { LoginResponse } from './applications/ports/jwt/login.response';
 import { LocalAuthGuard } from './guards/local.guard';
 import { ILogoutService } from './applications/ports/services/logout.service.interface';
-import { Public } from './public.decorator';
+import { Public } from './decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
