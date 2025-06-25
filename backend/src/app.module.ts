@@ -48,15 +48,15 @@ import { CatalogModule } from './modules/catalog/catalog.module';
   ],
   controllers: [],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: JwtGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtGuard,
+    // },
 
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
   ],
 })
 export class AppModule {}
