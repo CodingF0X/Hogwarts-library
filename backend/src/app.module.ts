@@ -9,12 +9,14 @@ import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from './modules/auth/guards/jwt.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
+import { CatalogModule } from './modules/catalog/catalog.module';
 
 @Module({
   imports: [
     AccountsModule,
     AuthModule,
     ProfileModule,
+    CatalogModule,
     ConfigModule,
     DatabaseModule,
     LoggerModule.forRootAsync({
