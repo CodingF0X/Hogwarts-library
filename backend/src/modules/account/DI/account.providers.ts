@@ -13,6 +13,8 @@ import {
 } from '../applications';
 import { VerifyUserApplication } from '../applications/verify-user.application';
 import { VerifyUserService } from '../applications/services/verify-user.service';
+import { ChangeRoleApplication } from '../applications/change-role.application';
+import { ChangeRoleService } from '../applications/services/change-role.service';
 
 export class AccountsProviders {
   // application layer
@@ -38,6 +40,11 @@ export class AccountsProviders {
     provide: Token.APPLICATIONS.LOGIN,
     useClass: VerifyUserApplication,
   };
+
+  static readonly CHANGE_ROLE_APP = {
+    provide: Token.APPLICATIONS.CHANGE_ROLE,
+    useClass: ChangeRoleApplication,
+  };
   // service layer
   static readonly CREATE_ACCOUNT_SVC = {
     provide: Token.SERVICES.CREATE_ACCOUNT,
@@ -62,6 +69,11 @@ export class AccountsProviders {
     useClass: VerifyUserService,
   };
 
+  static readonly CHANGE_ROLE_SVC = {
+    provide: Token.SERVICES.CHANGE_ROLE,
+    useClass: ChangeRoleService,
+  };
+
   static readonly all = [
     AccountsProviders.CREATE_ACCOUNT_APP,
     AccountsProviders.CREATE_ACCOUNT_SVC,
@@ -73,5 +85,7 @@ export class AccountsProviders {
     AccountsProviders.DELETE_ACCOUNT_SVC,
     AccountsProviders.LOGIN_APP,
     AccountsProviders.LOGIN_SVC,
+    AccountsProviders.CHANGE_ROLE_APP,
+    AccountsProviders.CHANGE_ROLE_SVC,
   ];
 }

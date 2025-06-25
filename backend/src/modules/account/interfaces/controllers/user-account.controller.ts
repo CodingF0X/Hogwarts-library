@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { Token } from 'src/modules/account/DI';
 import {
+  IChangeRoleApplication,
   ICreateUserAccountApplication,
   IDeleteUserAccountApplication,
   IGetUserAccountApplication,
@@ -21,6 +22,7 @@ import { UpdateUserAccountDTO } from '../../applications/DTO/update-user.dto';
 import { Public } from 'src/modules/auth/decorators/public.decorator';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { User_Role } from 'src/modules/auth/roles.enum';
+import { ChangeRoleDTO } from '../../applications/DTO/change-role.dto';
 
 @Controller('/accounts')
 export class UserAccountController {
@@ -36,6 +38,9 @@ export class UserAccountController {
 
     @Inject(Token.APPLICATIONS.DELETE_ACCOUNT)
     private readonly deleteAccount: IDeleteUserAccountApplication,
+
+    @Inject(Token.APPLICATIONS.CHANGE_ROLE)
+    private readonly changeRoleApp: IChangeRoleApplication,
   ) {}
 
   @Public()
@@ -73,7 +78,17 @@ export class UserAccountController {
   }
 
   @Delete('/:id')
+  @Roles(User_Role.ADMIN)
   async delete(@Param('id') id: number): Promise<string> {
     return await this.deleteAccount.delete(id);
+  }
+
+  @Patch('/:id/role')
+  @Roles(User_Role.ADMIN)
+  async changeRole(
+    @Param('id') id: number,
+    @Body() role: ChangeRoleDTO,
+  ): Promise<string> {
+    return await this.changeRoleApp.changeRole(id, role);
   }
 }

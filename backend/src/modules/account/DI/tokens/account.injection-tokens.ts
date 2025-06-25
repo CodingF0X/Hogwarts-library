@@ -5,6 +5,7 @@ export const Token = {
     UPDATE_ACCOUNT: 'UpdateUserAccountService',
     DELETE_ACCOUNT: 'DeleteUserAccountService',
     LOGIN: 'VerifyUserService',
+    CHANGE_ROLE: 'ChangeUserRoleService',
   },
   APPLICATIONS: {
     CREATE_ACCOUNT: 'CreateUserAccountApplication',
@@ -12,5 +13,6 @@ export const Token = {
     UPDATE_ACCOUNT: 'UpdateUserAccountApplication',
     DELETE_ACCOUNT: 'DeleteUserAccountApplication',
     LOGIN: 'VerifyUserApplication',
+    CHANGE_ROLE: 'ChangeRoleApplication',
   },
 };
