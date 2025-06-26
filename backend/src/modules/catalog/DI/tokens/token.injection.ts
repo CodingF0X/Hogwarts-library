@@ -3,5 +3,6 @@ export const AUTHOR_TOKEN = {
     CREATE: 'ICreateAuthorService',
     GET: 'IGetAuthorService',
     UPDATE: 'IUpdateAuthorService',
+    DELETE: 'IDeleteAuthorService',
   },
 };

@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   Inject,
   Logger,
@@ -17,6 +18,7 @@ import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { User_Role } from 'src/modules/auth/roles.enum';
 import {
   ICreateAuthorService,
+  IDeleteAuthorService,
   IGetAuthorService,
   IUpdateAuthorService,
 } from '../applications/ports/author';
@@ -34,6 +36,9 @@ export class AuthorsController {
 
     @Inject(AUTHOR_TOKEN.SERVICES.UPDATE)
     private readonly updateAuthorSVC: IUpdateAuthorService,
+
+    @Inject(AUTHOR_TOKEN.SERVICES.DELETE)
+    private readonly deleteAuthorSVC: IDeleteAuthorService,
   ) {}
 
   @Post()
@@ -59,9 +64,8 @@ export class AuthorsController {
   async getAuthorByName(
     @Query('name') lastName: string,
   ): Promise<AuthorDomain> {
-    return await this.getAuthorSVC.getByLastName(lastName)
-    .catch((err) => {
-      console.log(err)
+    return await this.getAuthorSVC.getByLastName(lastName).catch((err) => {
+      console.log(err);
       this.logger.error(err.message);
       throw new BadRequestException(err.message);
     });
@@ -86,5 +90,17 @@ export class AuthorsController {
       this.logger.error(err.message);
       throw new BadRequestException(err.message);
     });
+  }
+
+  @Delete('id/:id')
+  @Roles(User_Role.ADMIN)
+  async deleteAuthor(@Param('id') id: number): Promise<string> {
+    return await this.deleteAuthorSVC.deleteById(id);
+  }
+
+  @Delete('name/:name')
+  @Roles(User_Role.ADMIN)
+  async deleteAuthorByName(@Param('name') lastName: string): Promise<string> {
+    return await this.deleteAuthorSVC.deleteByName(lastName);
   }
 }

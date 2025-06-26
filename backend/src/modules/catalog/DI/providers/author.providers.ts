@@ -3,6 +3,7 @@ import { AUTHOR_TOKEN } from '../tokens/token.injection';
 import { CreateAuthorService } from '../../applications/services/author/create-author.service';
 import { GetAuthorService } from '../../applications/services/author/get-author.service';
 import { UpdateAuthorService } from '../../applications/services/author/update-author.service';
+import { DeleteAuthorService } from '../../applications/services/author/delete-author.service';
 
 @Injectable()
 export class AuthorProviders {
@@ -21,9 +22,15 @@ export class AuthorProviders {
     useClass: UpdateAuthorService,
   };
 
+  static readonly DELETE_AUTHOR_SVC = {
+    provide: AUTHOR_TOKEN.SERVICES.DELETE,
+    useClass: DeleteAuthorService,
+  };
+
   static all = [
     AuthorProviders.CREATE_AUTHOR_SVC,
     AuthorProviders.GET_AUTHOR_SVC,
     AuthorProviders.UPDATE_AUTHOR_SVC,
+    AuthorProviders.DELETE_AUTHOR_SVC,
   ];
 }
