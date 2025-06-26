@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { AuthorDomain } from '../../domain/entities/author.entity';
 import { AuthorRepository } from '../../repository/author.repository';
-import { IGetAuthorService } from '../ports';
 import { AuthorMapper } from '../mapper/author.mapper';
+import { IGetAuthorService } from '../ports/author';
 
 @Injectable()
 export class GetAuthorService implements IGetAuthorService {

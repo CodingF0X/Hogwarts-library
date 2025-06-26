@@ -10,11 +10,14 @@ import {
   Query,
 } from '@nestjs/common';
 import { AUTHOR_TOKEN } from '../DI/tokens/token.injection';
-import { ICreateAuthorService, IGetAuthorService } from '../applications/ports';
 import { CreateAuthorDTO } from '../applications/DTO/create-author.dto';
 import { AuthorDomain } from '../domain/entities/author.entity';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { User_Role } from 'src/modules/auth/roles.enum';
+import {
+  ICreateAuthorService,
+  IGetAuthorService,
+} from '../applications/ports/author';
 
 @Controller('authors')
 export class AuthorsController {

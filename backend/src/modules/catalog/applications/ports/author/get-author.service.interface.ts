@@ -1,4 +1,4 @@
-import { AuthorDomain } from '../../domain/entities/author.entity';
+import { AuthorDomain } from '../../../domain/entities/author.entity';
 
 export interface IGetAuthorService {
   getbyId(id: number): Promise<AuthorDomain>;
