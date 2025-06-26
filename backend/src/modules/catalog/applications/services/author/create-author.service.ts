@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
-import { AuthorDomain } from '../../domain/entities/author.entity';
-import { CreateAuthorDTO } from '../DTO/create-author.dto';
-import { AuthorRepository } from '../../repository/author.repository';
-import { ICreateAuthorService } from '../ports/author';
+import { AuthorDomain } from '../../../domain/entities/author.entity';
+import { CreateAuthorDTO } from '../../DTO/author/create-author.dto';
+import { AuthorRepository } from '../../../repository/author.repository';
+import { ICreateAuthorService } from '../../ports/author';
 
 @Injectable()
 export class CreateAuthorService implements ICreateAuthorService {

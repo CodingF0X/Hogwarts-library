@@ -11,7 +11,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { AUTHOR_TOKEN } from '../DI/tokens/token.injection';
-import { CreateAuthorDTO } from '../applications/DTO/create-author.dto';
+import { CreateAuthorDTO } from '../applications/DTO/author/create-author.dto';
 import { AuthorDomain } from '../domain/entities/author.entity';
 import { Roles } from 'src/modules/auth/decorators/roles.decorator';
 import { User_Role } from 'src/modules/auth/roles.enum';
@@ -20,7 +20,7 @@ import {
   IGetAuthorService,
   IUpdateAuthorService,
 } from '../applications/ports/author';
-import { UpdateAuthrorDTO } from '../applications/DTO/update-author.dto';
+import { UpdateAuthrorDTO } from '../applications/DTO/author/update-author.dto';
 
 @Controller('authors')
 export class AuthorsController {

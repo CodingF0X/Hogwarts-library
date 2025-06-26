@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { AUTHOR_TOKEN } from '../tokens/token.injection';
-import { CreateAuthorService } from '../../applications/services/create-author.service';
-import { GetAuthorService } from '../../applications/services/get-author.service';
-import { UpdateAuthorService } from '../../applications/services/update-author.service';
+import { CreateAuthorService } from '../../applications/services/author/create-author.service';
+import { GetAuthorService } from '../../applications/services/author/get-author.service';
+import { UpdateAuthorService } from '../../applications/services/author/update-author.service';
 
 @Injectable()
 export class AuthorProviders {

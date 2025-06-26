@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
-import { IUpdateAuthorService } from '../ports/author';
-import { AuthorDomain } from '../../domain/entities/author.entity';
-import { UpdateAuthrorDTO } from '../DTO/update-author.dto';
-import { AuthorRepository } from '../../repository/author.repository';
-import { AuthorMapper } from '../mapper/author.mapper';
+import { IUpdateAuthorService } from '../../ports/author';
+import { AuthorDomain } from '../../../domain/entities/author.entity';
+import { UpdateAuthrorDTO } from '../../DTO/author/update-author.dto';
+import { AuthorRepository } from '../../../repository/author.repository';
+import { AuthorMapper } from '../../mapper/author.mapper';
 
 @Injectable()
 export class UpdateAuthorService implements IUpdateAuthorService {

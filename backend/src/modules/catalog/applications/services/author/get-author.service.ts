@@ -4,10 +4,10 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { AuthorDomain } from '../../domain/entities/author.entity';
-import { AuthorRepository } from '../../repository/author.repository';
-import { AuthorMapper } from '../mapper/author.mapper';
-import { IGetAuthorService } from '../ports/author';
+import { AuthorDomain } from '../../../domain/entities/author.entity';
+import { AuthorRepository } from '../../../repository/author.repository';
+import { AuthorMapper } from '../../mapper/author.mapper';
+import { IGetAuthorService } from '../../ports/author';
 
 @Injectable()
 export class GetAuthorService implements IGetAuthorService {
