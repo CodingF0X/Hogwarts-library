@@ -6,3 +6,12 @@ export const AUTHOR_TOKEN = {
     DELETE: 'IDeleteAuthorService',
   },
 };
+
+export const BOOK_TOKEN = {
+  SERVICES: {
+    CREATE: 'ICreateBookService',
+    GET: 'IGetBookService',
+    UPDATE: 'IUpdateBookService',
+    DELETE: 'IDeleteBookService',
+  },
+};
