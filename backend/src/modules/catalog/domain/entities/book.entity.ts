@@ -19,9 +19,10 @@ export class BookDomain {
 
     if (!input.title) throw new BadRequestException('Title is required');
     this.title = input.title;
-    // if (!input.description)
-    //   throw new BadRequestException('Description is required');
-    // this.description = input.description
+    
+    if (!input.description)
+      throw new BadRequestException('Description is required');
+    this.description = input.description
 
     if (!input.ISBN) throw new BadRequestException('ISBN is required');
     this.ISBN = input.ISBN;

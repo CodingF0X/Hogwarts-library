@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { ICreateBookService } from '../../ports/book/create-book.service.interface';
-import { BooksRepository } from 'src/modules/catalog/repository/catalog.repository';
+import { BooksRepository } from 'src/modules/catalog/repository/books.repository';
 import { BookDomain } from 'src/modules/catalog/domain/entities/book.entity';
 import { CreateBookDTO } from '../../DTO/book/create-book.dto';
 import { BookMapper } from '../../mapper/book.mapper';

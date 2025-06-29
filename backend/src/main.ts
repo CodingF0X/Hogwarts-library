@@ -5,15 +5,18 @@ import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { Logger } from 'nestjs-pino';
 import * as cookieParser from 'cookie-parser';
-import { DataSource } from 'typeorm';
-import { ProfileEntity } from './modules/profile/repository/entities/profile.entity';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   const conifgService = app.get(ConfigService);
-  const profileRepo = app.get(DataSource).getRepository(ProfileEntity);
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   app.useLogger(app.get(Logger));
   app.use(cookieParser());
