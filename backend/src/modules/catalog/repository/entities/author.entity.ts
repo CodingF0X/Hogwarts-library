@@ -23,7 +23,7 @@ export class AuthorEntity extends AbstractEntity<AuthorEntity> {
   @Column({ type: 'varchar', nullable: false, length: 255, unique: true })
   lastName: string;
 
-  @ManyToMany(() => BookEntity, (book) => book.authors)
+  @ManyToMany(() => BookEntity, (book) => book.authors, { onDelete: 'CASCADE' })
   @JoinTable({
     name: 'authors_books',
     joinColumn: {

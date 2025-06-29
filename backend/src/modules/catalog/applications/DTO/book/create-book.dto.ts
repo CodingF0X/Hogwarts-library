@@ -1,4 +1,12 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateBookDTO {
   @IsString()
@@ -12,6 +20,11 @@ export class CreateBookDTO {
   @IsNotEmpty()
   ISBN: string;
 
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsInt({ each: true })
+  readonly authorIds!: number[];
+
   @IsString()
   @IsNotEmpty()
   category: string;
@@ -22,9 +35,9 @@ export class CreateBookDTO {
 
   @IsDate()
   @IsOptional()
-  publcation_date: Date;
+  publication_date: Date;
 
   @IsString()
-    @IsOptional()
+  @IsOptional()
   thumbnail_url: string;
 }

@@ -10,7 +10,11 @@ export class BookEntity extends AbstractEntity<BookEntity> {
   })
   id: number;
 
-  @ManyToMany(() => AuthorEntity, (author) => author.books, { eager: true })
+  @ManyToMany(() => AuthorEntity, (author) => author.books, {
+    eager: true,
+    nullable: false,
+    onDelete:'CASCADE' 
+  })
   authors: AuthorEntity[];
 
   @Column({ type: 'varchar', nullable: false, length: 255 })
@@ -29,7 +33,7 @@ export class BookEntity extends AbstractEntity<BookEntity> {
   publisher: string;
 
   @Column({ type: 'date', nullable: true })
-  publcation_date: Date;
+  publication_date: Date;
 
   //   @Column({ type: 'int', nullable: false })
   //   pages: number;

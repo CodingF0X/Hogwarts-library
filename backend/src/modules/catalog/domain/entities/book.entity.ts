@@ -1,10 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
+import { AuthorDomain } from './author.entity';
 
 export class BookDomain {
   public readonly id: number;
   public readonly title: string;
   public readonly description: string;
   public readonly ISBN: string;
+  public readonly authors:AuthorDomain[]
   public readonly category: string;
   public readonly publisher: string;
   public readonly publcation_date: Date;
@@ -26,6 +28,10 @@ export class BookDomain {
 
     if (!input.ISBN) throw new BadRequestException('ISBN is required');
     this.ISBN = input.ISBN;
+
+
+    if(!input.authors) throw new BadRequestException('Authors is required');
+    this.authors = input.authors;
 
     if (!input.category) throw new BadRequestException('Category is required');
     this.category = input.category;
