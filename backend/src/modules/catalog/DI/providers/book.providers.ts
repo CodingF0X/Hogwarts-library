@@ -1,4 +1,5 @@
 import { CreateBookService } from '../../applications/services/book/create-book.service';
+import { DeleteBookService } from '../../applications/services/book/delete-book.service';
 import { GetBookService } from '../../applications/services/book/get-book.service';
 import { UpdateBookService } from '../../applications/services/book/update-book.service';
 import { BOOK_TOKEN } from '../tokens/token.injection';
@@ -19,9 +20,15 @@ export class BookProviders {
     useClass: UpdateBookService,
   };
 
+  static readonly DELETE_SVC = {
+    provide: BOOK_TOKEN.SERVICES.DELETE,
+    useClass: DeleteBookService,
+  };
+
   static all = [
     BookProviders.CREATE_SVC,
     BookProviders.GET_SVC,
     BookProviders.UPDATE_SVC,
+    BookProviders.DELETE_SVC,
   ];
 }
