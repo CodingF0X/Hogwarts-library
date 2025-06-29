@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 import { Token } from 'src/modules/account/DI';
 import {
-  IChangeRoleApplication,
-  ICreateUserAccountApplication,
-  IDeleteUserAccountApplication,
-  IGetUserAccountApplication,
-  IUpdateUserAccountApplication,
+  IChangeRoleService,
+  ICreateUserAccountService,
+  IDeleteUserAccountService,
+  IGetUserAccountService,
+  IUpdateUserAccountService,
 } from '../../applications/ports';
 import { CreateUserAccountDTO } from '../../applications/DTO/create-user.dto';
 import { UserAccountDomain } from '../../domain/entities/user-account';
@@ -27,20 +27,20 @@ import { ChangeRoleDTO } from '../../applications/DTO/change-role.dto';
 @Controller('/accounts')
 export class UserAccountController {
   constructor(
-    @Inject(Token.APPLICATIONS.CREATE_ACCOUNT)
-    private readonly createAccount: ICreateUserAccountApplication,
+    @Inject(Token.SERVICES.CREATE_ACCOUNT)
+    private readonly createAccount: ICreateUserAccountService,
 
-    @Inject(Token.APPLICATIONS.GET_ACCOUNT)
-    private readonly getAccount: IGetUserAccountApplication,
+    @Inject(Token.SERVICES.GET_ACCOUNT)
+    private readonly getAccount: IGetUserAccountService,
 
-    @Inject(Token.APPLICATIONS.UPDATE_ACCOUNT)
-    private readonly updateAccount: IUpdateUserAccountApplication,
+    @Inject(Token.SERVICES.UPDATE_ACCOUNT)
+    private readonly updateAccount: IUpdateUserAccountService,
 
-    @Inject(Token.APPLICATIONS.DELETE_ACCOUNT)
-    private readonly deleteAccount: IDeleteUserAccountApplication,
+    @Inject(Token.SERVICES.DELETE_ACCOUNT)
+    private readonly deleteAccount: IDeleteUserAccountService,
 
-    @Inject(Token.APPLICATIONS.CHANGE_ROLE)
-    private readonly changeRoleApp: IChangeRoleApplication,
+    @Inject(Token.SERVICES.CHANGE_ROLE)
+    private readonly changeRoleApp: IChangeRoleService,
   ) {}
 
   @Public()

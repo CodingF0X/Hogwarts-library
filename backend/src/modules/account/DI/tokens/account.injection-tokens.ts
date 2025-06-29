@@ -7,12 +7,4 @@ export const Token = {
     LOGIN: 'VerifyUserService',
     CHANGE_ROLE: 'ChangeUserRoleService',
   },
-  APPLICATIONS: {
-    CREATE_ACCOUNT: 'CreateUserAccountApplication',
-    GET_ACCOUNT: 'GetUserAccountApplication',
-    UPDATE_ACCOUNT: 'UpdateUserAccountApplication',
-    DELETE_ACCOUNT: 'DeleteUserAccountApplication',
-    LOGIN: 'VerifyUserApplication',
-    CHANGE_ROLE: 'ChangeRoleApplication',
-  },
 };

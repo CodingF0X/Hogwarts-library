@@ -4,7 +4,7 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 import { IAddress } from '../../domain/value-objects/address.interface';
 import { Address } from './address.table';
 
-@Entity({ schema: 'profile', name: 'user_profile' })
+@Entity({ schema: 'users', name: 'user_profile' })
 export class ProfileEntity extends AbstractAudit {
   @PrimaryColumn({ type: 'bigint', nullable: false, unique: true })
   id: number;

@@ -9,7 +9,7 @@ import {
   Unique,
 } from 'typeorm';
 
-@Entity({ schema: 'accounts', name: 'user_account' })
+@Entity({ schema: 'users', name: 'user_account' })
 @Unique(['email'])
 export class UserAccountEntity extends AbstractEntity<UserAccountEntity> {
   @PrimaryGeneratedColumn({ type: 'bigint' })

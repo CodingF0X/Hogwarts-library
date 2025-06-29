@@ -2,15 +2,15 @@ import { Inject, Injectable, Logger, UnauthorizedException } from '@nestjs/commo
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { Token } from 'src/modules/account/DI';
-import { IVerifyUserApplication } from 'src/modules/account/applications/ports';
 import { User } from '../applications/ports/jwt/user.interface';
+import { IVerifyUserService } from 'src/modules/account/applications/ports';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   private readonly logger = new Logger(LocalStrategy.name);
   constructor(
-    @Inject(Token.APPLICATIONS.LOGIN)
-    private readonly verifyUserApp: IVerifyUserApplication,
+    @Inject(Token.SERVICES.LOGIN)
+    private readonly verifyUserApp: IVerifyUserService,
   ) {
     super({
       usernameField: 'email',

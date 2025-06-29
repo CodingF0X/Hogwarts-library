@@ -13,6 +13,6 @@ import { ProfileModule } from '../profile/profile.module';
   ],
   controllers: [UserAccountController],
   providers: [UserAccountRepository, ...AccountsProviders.all],
-  exports: [AccountsProviders.LOGIN_APP],
+  exports: [AccountsProviders.LOGIN_SVC],
 })
 export class AccountsModule {}
