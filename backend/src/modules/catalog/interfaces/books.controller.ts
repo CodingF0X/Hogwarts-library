@@ -72,6 +72,14 @@ export class BooksController {
     });
   }
 
+  @Get('find/all/query')
+  @Roles(User_Role.ADMIN)
+  async getBooksByQuery(@Query() data: GetBookDTO): Promise<BookResponse[]> {
+    return await this.getBookSVC.getAllBy(data).catch((err) => {
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    });
+  }
+
   @Patch('patch/:id')
   @Roles(User_Role.ADMIN)
   async updateBook(

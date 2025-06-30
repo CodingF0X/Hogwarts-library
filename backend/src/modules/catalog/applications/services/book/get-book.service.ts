@@ -22,6 +22,18 @@ export class GetBookService implements IGetBookService {
     }
   }
 
+  async getAllBy(query: GetBookDTO): Promise<BookResponse[]> {
+
+    console.log(query)
+     try {
+      const books = await this.booksRepo.getAllBy(query);
+      return BookMapper.toBookDomainList(books);
+    } catch (error) {
+      this.logger.error(error.message);
+      throw new BadRequestException(error.message);
+    }
+  }
+
   async getBy(query: GetBookDTO): Promise<BookResponse> {
     const conditions = Object.entries(query)
       .filter(([key, value]) => value !== undefined)

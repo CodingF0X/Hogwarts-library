@@ -10,6 +10,7 @@ import {
 import { BookEntity } from './entities/book.entity';
 import { AuthorEntity } from './entities/author.entity';
 import { CreateBookDTO } from '../applications/DTO/book/create-book.dto';
+import { GetBookDTO } from '../applications/DTO/book/get-book.dto';
 
 @Injectable()
 export class BooksRepository extends AbstractRepository<BookEntity> {
@@ -44,6 +45,19 @@ export class BooksRepository extends AbstractRepository<BookEntity> {
     } catch (error) {
       this.logger.error(error.message);
       throw new BadRequestException(error.message);
+    }
+  }
+
+  public async getAllBy(query:GetBookDTO):Promise<BookEntity[]>{
+    try {
+      const books = await this.bookRepo.findBy({
+        ...query,
+      });
+      return books;
+      
+    } catch (error) {
+      this.logger.error(error.message)
+      throw new BadRequestException(error.message)
     }
   }
 }
