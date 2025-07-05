@@ -9,8 +9,8 @@ export class BookDomain {
   public readonly authors:AuthorDomain[]
   public readonly category: string;
   public readonly publisher: string;
-  public readonly publcation_date: Date;
-  public readonly thumbnail_url: string;
+  // public readonly publcation_date: Date;
+  // public readonly thumbnail_url: string;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
 

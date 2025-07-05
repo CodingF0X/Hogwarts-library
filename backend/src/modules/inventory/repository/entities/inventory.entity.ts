@@ -17,7 +17,7 @@ export class InventoryEntity extends AbstractEntity<InventoryEntity> {
   id: number;
 
   @OneToOne(() => BookEntity, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'book_id' })
+  @JoinColumn({ name: 'book_id' , foreignKeyConstraintName:'FK_book_id'})
   book: BookEntity;
 
   @Column({ type: 'int', nullable: false, default: 0 })
