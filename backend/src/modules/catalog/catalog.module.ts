@@ -10,7 +10,7 @@ import { BookProviders } from './DI/providers/book.providers';
 import { BooksController } from './interfaces/books.controller';
 
 @Module({
-  imports: [DatabaseModule.forFeature([AuthorEntity, BookEntity])],
+  imports: [DatabaseModule.forFeature([AuthorEntity, BookEntity]),],
   controllers: [AuthorsController, BooksController],
   providers: [
     AuthorRepository,

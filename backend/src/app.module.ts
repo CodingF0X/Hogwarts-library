@@ -10,6 +10,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from './modules/auth/guards/jwt.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
 import { CatalogModule } from './modules/catalog/catalog.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { CatalogModule } from './modules/catalog/catalog.module';
         },
       }),
     }),
+    InventoryModule,
   ],
   controllers: [],
   providers: [

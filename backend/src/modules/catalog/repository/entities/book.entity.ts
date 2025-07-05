@@ -1,6 +1,13 @@
 import { AbstractEntity } from 'src/infrastructure/database/abstract.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { AuthorEntity } from './author.entity';
+import { InventoryEntity } from 'src/modules/inventory/repository/entities/inventory.entity';
 
 @Entity({ schema: 'catalog', name: 'books' })
 export class BookEntity extends AbstractEntity<BookEntity> {
@@ -13,7 +20,7 @@ export class BookEntity extends AbstractEntity<BookEntity> {
   @ManyToMany(() => AuthorEntity, (author) => author.books, {
     eager: true,
     nullable: false,
-    onDelete:'CASCADE' 
+    onDelete: 'CASCADE',
   })
   authors: AuthorEntity[];
 
@@ -40,6 +47,9 @@ export class BookEntity extends AbstractEntity<BookEntity> {
 
   @Column({ type: 'varchar', nullable: true, length: 255 })
   thumbnail_url: string;
+
+  @OneToOne(() => InventoryEntity, (inventory) => inventory.book)
+  inventory: InventoryEntity;
 
   constructor(book: Partial<BookEntity>) {
     super(book);
