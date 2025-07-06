@@ -3,7 +3,11 @@ import { AbstractRepository } from 'src/infrastructure/database/abstract.reposit
 import { InventoryEntity } from './entities/inventory.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
-import { BookNotFoundException, InventoryPersistanceExeption } from '../errors';
+import {
+  BookNotFoundException,
+  InventoryNotFoundExeption,
+  InventoryPersistanceExeption,
+} from '../errors';
 
 @Injectable()
 export class InventoryRepository extends AbstractRepository<InventoryEntity> {
@@ -34,12 +38,43 @@ export class InventoryRepository extends AbstractRepository<InventoryEntity> {
 
     try {
       return await this.inventoryRepo.save(inventory);
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.code === '23503') {
         throw new BookNotFoundException(bookId);
       }
       this.logger.error(error);
       throw new InventoryPersistanceExeption(error);
+    }
+  }
+
+  async findAll(): Promise<InventoryEntity[]> {
+    try {
+      const inventory = await this.inventoryRepo.find({ relations: ['book'] });
+      return inventory;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw new InventoryNotFoundExeption(error);
+    }
+  }
+
+  async getItemByBookId(bookId: number): Promise<InventoryEntity> {
+    try {
+      const inventory = await this.inventoryRepo.findOne({
+        where: { book: { id: bookId } },
+        relations: ['book'],
+      });
+
+      if (!inventory?.book) {
+        throw new BookNotFoundException(bookId);
+      }
+
+      return inventory;
+    } catch (error) {
+      if (error.code === '23503') {
+        throw new BookNotFoundException(bookId);
+      }
+      this.logger.error(error.message);
+      throw new InventoryNotFoundExeption(bookId);
     }
   }
 }

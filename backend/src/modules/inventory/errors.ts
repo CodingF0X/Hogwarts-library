@@ -11,3 +11,10 @@ export class InventoryPersistanceExeption extends Error {
     this.name = 'InventoryPersistenceError';
   }
 }
+
+export class InventoryNotFoundExeption extends Error {
+  constructor(bookid: number) {
+    super('Inventory not found '+ `for book Id ${bookid}`);
+    this.name = 'InventoryNotFoundExeption';
+  }
+}
