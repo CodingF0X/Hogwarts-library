@@ -1,3 +1,4 @@
+import { AddBookCopiesService } from '../applications/services/books/add-copies.service';
 import { GetInventoryService } from '../applications/services/get-inventory.service';
 import { GetQuantityService } from '../applications/services/get-qty.service';
 import { SetQtyService } from '../applications/services/set-qty.service';
@@ -19,9 +20,15 @@ export class InventoryProviders {
     useClass: GetInventoryService,
   };
 
+  static readonly INSERT_BOOK_COPIES_SVC = {
+    provide: INVENTORY_TOKENS.SERVICES.INSERT_BOOK_COPIES,
+    useClass: AddBookCopiesService,
+  };
+
   public static all = [
     InventoryProviders.SET_QTY_SVC,
     InventoryProviders.GET_QTY_SVC,
     InventoryProviders.GET_INVENTORY_SVC,
+    InventoryProviders.INSERT_BOOK_COPIES_SVC,
   ];
 }

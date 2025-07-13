@@ -4,10 +4,17 @@ import { InventoryEntity } from './repository/entities/inventory.entity';
 import { InventoryRepository } from './repository/inventory.repository';
 import { InventoryProviders } from './DI/inventory.providers';
 import { InventoryController } from './interfaces/inventory.controller';
+import { BookCopyEntity } from './repository/entities/book-copy.entity';
+import { BooksInventoryController } from './interfaces/book-inventory.controller';
+import { BookCopyRepository } from './repository/book-copy.repository';
 
 @Module({
-  imports: [DatabaseModule.forFeature([InventoryEntity])],
-  providers: [InventoryRepository, ...InventoryProviders.all],
-  controllers: [InventoryController],
+  imports: [DatabaseModule.forFeature([InventoryEntity, BookCopyEntity])],
+  providers: [
+    InventoryRepository,
+    BookCopyRepository,
+    ...InventoryProviders.all,
+  ],
+  controllers: [InventoryController, BooksInventoryController],
 })
 export class InventoryModule {}

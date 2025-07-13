@@ -3,11 +3,13 @@ import {
   Column,
   Entity,
   ManyToMany,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { AuthorEntity } from './author.entity';
 import { InventoryEntity } from 'src/modules/inventory/repository/entities/inventory.entity';
+import { BookCopyEntity } from 'src/modules/inventory/repository/entities/book-copy.entity';
 
 @Entity({ schema: 'catalog', name: 'books' })
 export class BookEntity extends AbstractEntity<BookEntity> {
@@ -23,6 +25,9 @@ export class BookEntity extends AbstractEntity<BookEntity> {
     onDelete: 'CASCADE',
   })
   authors: AuthorEntity[];
+
+  @OneToMany(() => BookCopyEntity, (copy) => copy.book)
+  copies: BookCopyEntity[];
 
   @Column({ type: 'varchar', nullable: false, length: 255 })
   title: string;
