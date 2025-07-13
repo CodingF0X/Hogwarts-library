@@ -8,7 +8,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CopyStatus } from '../status.enum';
+import { CopyStatus } from '../../enums/status.enum';
 
 @Entity({ schema: 'inventory', name: 'book_copy' })
 export class BookCopyEntity extends AbstractEntity<BookCopyEntity> {

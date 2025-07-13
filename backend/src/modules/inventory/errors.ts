@@ -1,6 +1,14 @@
-export class BookNotFoundException extends Error {
+import { MediaType } from './enums/media.enum';
+
+export class ItemNotFoundException extends Error {
+  constructor(itemId: number, item: string) {
+    super(`${item} with id ${itemId} not found`);
+    this.name = 'ItemNotFoundException';
+  }
+}
+export class BookNotFoundException extends ItemNotFoundException {
   constructor(bookId: number) {
-    super(`Book with id ${bookId} not found`);
+    super(bookId, MediaType.BOOK);
     this.name = 'BookNotFoundException';
   }
 }
@@ -14,7 +22,7 @@ export class InventoryPersistanceExeption extends Error {
 
 export class InventoryNotFoundExeption extends Error {
   constructor(bookid: number) {
-    super('Inventory not found '+ `for book Id ${bookid}`);
+    super('Inventory not found ' + `for book Id ${bookid}`);
     this.name = 'InventoryNotFoundExeption';
   }
 }

@@ -11,8 +11,8 @@ export class AddBookCopiesService implements IAddBookCopiesService {
 
   async insertCopies(bookId: number, qty: number): Promise<BookCopy[]> {
     try {
-      const copies = await this.bookCopyRepo.insertBookCopies(bookId, qty);
-      console.log(copies)
+      const copies = await this.bookCopyRepo.addCopies(bookId, qty);
+      console.log(copies);
       return copies.map((copy) => new BookCopy(copy));
     } catch (error) {
       this.logger.error(error.message);

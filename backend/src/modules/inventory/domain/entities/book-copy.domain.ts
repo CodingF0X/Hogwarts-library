@@ -1,5 +1,5 @@
 import { BookDomain } from 'src/modules/catalog/domain/entities/book.entity';
-import { CopyStatus } from '../../repository/status.enum';
+import { CopyStatus } from '../../enums/status.enum';
 
 export class BookCopy {
   public readonly id: number;
