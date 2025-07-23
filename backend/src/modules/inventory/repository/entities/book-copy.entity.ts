@@ -9,9 +9,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CopyStatus } from '../../enums/status.enum';
+import { IBaseCopy } from 'src/infrastructure/database/abstract.base-copy.entity';
 
 @Entity({ schema: 'inventory', name: 'book_copy' })
-export class BookCopyEntity extends AbstractEntity<BookCopyEntity> {
+export class BookCopyEntity extends AbstractEntity<BookCopyEntity> implements IBaseCopy {
   @PrimaryGeneratedColumn({
     type: 'bigint',
     primaryKeyConstraintName: 'PK_book_copy_id',
